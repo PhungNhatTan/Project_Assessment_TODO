@@ -3,8 +3,11 @@
 import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import MenuItems from "./MenuItem";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const UserDrop = () => {
+    const registerModal = useRegisterModal();
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOpen = useCallback(() => {
@@ -35,10 +38,10 @@ const UserDrop = () => {
                         <>
                             <MenuItems
                                 onClick={() => { }}
-                                label="Log-in"
+                                label="Login"
                             />
                             <MenuItems
-                                onClick={() => { }}
+                                onClick={registerModal.onOpen}
                                 label="Sign up"
                             />
                         </>
