@@ -3,10 +3,13 @@
 import React, { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import MenuItems from "./MenuItem";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { User } from "@/app/generated/prisma";
 import { signOut } from 'next-auth/react';
+
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useNoteModal from "@/app/hooks/useNoteModal";
+
 
 interface UserDropProp {
     currentUser?: User | null;
@@ -17,6 +20,7 @@ const UserDrop: React.FC<UserDropProp> = ({
 }) => {
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
+    const noteModal = useNoteModal();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -24,15 +28,23 @@ const UserDrop: React.FC<UserDropProp> = ({
         setIsOpen((value) => !value)
     }, []);
 
+    const onNote = useCallback(() => {
+        if (!currentUser) {
+            return loginModal.onOpen();
+        }
+
+        noteModal.onOpen();
+    }, [currentUser, loginModal, noteModal]);
+
     return (
         <div
             className="relative">
             <div
                 className="flex flex-row item-center gap-3">
                 <div
-                    onClick={() => { }}
+                    onClick={onNote}
                     className="hidden md:block hover:bg-neutral-100 py-3 px-4 rounded-full transition cursor-pointer">
-                    Welcome
+                    Create new TODO note
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -47,6 +59,19 @@ const UserDrop: React.FC<UserDropProp> = ({
                         className="flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
+                                <MenuItems
+                                    onClick={() => { }}
+                                    label="Your Notes"
+                                />
+                                <MenuItems
+                                    onClick={() => { }}
+                                    label="Your Assignments"
+                                />
+                                <MenuItems
+                                    onClick={onNote}
+                                    label="Create new TODO note"
+                                />
+                                <hr />
                                 <MenuItems
                                     onClick={() => signOut()}
                                     label="Logout"

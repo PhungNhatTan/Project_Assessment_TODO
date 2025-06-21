@@ -8,6 +8,9 @@ import ToasterProvider from "./providers/ToasterProvider";
 import RegisterModal from "./clientcomponent/modals/RegisterModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./clientcomponent/ClientOnly";
+import TODO from "./clientcomponent/todos/TODO";
+import NoteModal from "./clientcomponent/modals/NoteModal";
+import getUsers from "./actions/getUsers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +33,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const currentUser = await getCurrentUser();
+  const userList = await getUsers();
 
   return (
     <html lang="en">
@@ -37,9 +41,11 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ClientOnly>
           <ToasterProvider />
+          <NoteModal userList={userList || []} />
           <LoginModal />
           <RegisterModal />
           <Navbar currentUser={currentUser} />
+
         </ClientOnly>
         {children}
       </body>
