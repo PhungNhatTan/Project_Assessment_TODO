@@ -23,8 +23,8 @@ const NoteList: React.FC<NoteListProps> = ({
                 setIsLoading(true);
                 const response = await axios.get('/api/todo');
                 setData(response.data);
-            } catch (error: any) {
-                toast.error(error?.response?.data?.error);
+            } catch (error) {
+                toast.error((error as Error)?.message || "Something went wrong");
             } finally {
                 setIsLoading(false);
             }

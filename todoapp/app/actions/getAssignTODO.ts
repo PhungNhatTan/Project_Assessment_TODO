@@ -12,5 +12,5 @@ export default async function getAssignTODO(currentUser: User) {
         if (!TODOs) return null;
 
         return TODOs;
-    } catch (error: any) { return null; }
+    } catch (error) { console.log(error) }
 }

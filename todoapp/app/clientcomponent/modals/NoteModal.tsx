@@ -32,7 +32,6 @@ const NoteModal: React.FC<NoteModalProps> = ({
         register,
         handleSubmit,
         formState: { errors, },
-        setValue,
         reset,
         control
     } = useForm<FieldValues>({

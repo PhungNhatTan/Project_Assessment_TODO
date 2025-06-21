@@ -7,6 +7,7 @@ import CredentialProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
 import prisma from "@/app/libs/prismadb";
+import { User } from "@/app/generated/prisma";
 
 export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
@@ -48,11 +49,15 @@ export const authOptions: AuthOptions = {
                     throw new Error('Incorrect username or password');
                 }
 
-                return user as any;
+                return {
+                    id: user.username,
+                    email: user.email,
+                    name: user.username,
+                };
             }
         })
     ],
-    pages:{
+    pages: {
         signIn: '/',
     },
     session: {

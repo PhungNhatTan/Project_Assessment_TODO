@@ -4,9 +4,7 @@ import { NextResponse } from "next/server";
 import prisma from '@/app/libs/prismadb';
 import getAuthorTODO from "@/app/actions/getAuthorTODO";
 
-export async function GET(
-    request: Request
-) {
+export async function GET() {
     const currentUser = await getCurrentUser();
     let listTODO
     if (currentUser) {
@@ -33,14 +31,6 @@ export async function POST(
         dueDate,
         status
     } = body;
-
-    const requiredKey = ['title', 'dueDate'];
-
-    Object.keys(body).forEach((requiredKey) => {
-        if (!body[requiredKey]) {
-            NextResponse.error()
-        }
-    });
 
     const finalAssignId = assignId || currentUser.username;
 

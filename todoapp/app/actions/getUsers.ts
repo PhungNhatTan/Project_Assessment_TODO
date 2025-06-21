@@ -7,5 +7,5 @@ export default async function getUsers() {
         if (!Users) return null;
 
         return Users;
-    } catch (error: any) { return null; }
+    } catch (error) { console.log(error); }
 }

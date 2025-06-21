@@ -15,5 +15,5 @@ export default async function getAuthorTODO(currentUser: User) {
         if (!TODOs) return null;
 
         return TODOs;
-    } catch (error: any) { return null; }
+    } catch (error) { console.log(error) }
 }

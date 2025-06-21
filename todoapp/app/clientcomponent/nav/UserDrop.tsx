@@ -37,7 +37,7 @@ const UserDrop: React.FC<UserDropProp> = ({
         }
 
         noteModal.onOpen();
-    }, [currentUser, loginModal, noteModal]);
+    }, [loginModal]);
 
     const viewNote = useCallback(() => {
         if(!currentUser){
@@ -45,7 +45,7 @@ const UserDrop: React.FC<UserDropProp> = ({
         }
 
         router.push('/api/todo')
-    }, [])
+    }, [loginModal])
 
     return (
         <div
