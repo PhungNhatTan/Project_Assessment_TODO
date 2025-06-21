@@ -11,6 +11,7 @@ import ClientOnly from "./clientcomponent/ClientOnly";
 import TODO from "./clientcomponent/todos/TODO";
 import NoteModal from "./clientcomponent/modals/NoteModal";
 import getUsers from "./actions/getUsers";
+import NoteList from "./clientcomponent/todos/NoteList";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +46,7 @@ export default async function RootLayout({
         <LoginModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
-
+        <NoteList currentUser={currentUser}/>
         <div>{children}</div>
       </body>
     </html>

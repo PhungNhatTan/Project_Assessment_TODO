@@ -9,6 +9,7 @@ import { signOut } from 'next-auth/react';
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useNoteModal from "@/app/hooks/useNoteModal";
+import { useRouter } from "next/navigation";
 
 
 interface UserDropProp {
@@ -21,6 +22,8 @@ const UserDrop: React.FC<UserDropProp> = ({
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
     const noteModal = useNoteModal();
+
+    const router = useRouter();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -35,6 +38,14 @@ const UserDrop: React.FC<UserDropProp> = ({
 
         noteModal.onOpen();
     }, [currentUser, loginModal, noteModal]);
+
+    const viewNote = useCallback(() => {
+        if(!currentUser){
+            return loginModal.onOpen();
+        }
+
+        router.push('/api/todo')
+    }, [])
 
     return (
         <div
@@ -60,12 +71,8 @@ const UserDrop: React.FC<UserDropProp> = ({
                         {currentUser ? (
                             <>
                                 <MenuItems
-                                    onClick={() => { }}
+                                    onClick={viewNote}
                                     label="Your Notes"
-                                />
-                                <MenuItems
-                                    onClick={() => { }}
-                                    label="Your Assignments"
                                 />
                                 <MenuItems
                                     onClick={onNote}

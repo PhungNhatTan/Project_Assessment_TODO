@@ -8,11 +8,12 @@ export async function GET(
     request: Request
 ) {
     const currentUser = await getCurrentUser();
-
+    let listTODO
     if (currentUser) {
-        const listTODO = await getAuthorTODO(currentUser);
-        return NextResponse.json(listTODO);
+        listTODO = await getAuthorTODO(currentUser);
     }
+
+    return NextResponse.json(listTODO);
 }
 
 export async function POST(
