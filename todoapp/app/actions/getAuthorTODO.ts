@@ -5,7 +5,7 @@ export default async function getAuthorTODO(currentUser: User) {
     try {
         const TODOs = await prisma.note.findMany({
             where: {
-                creatorId: currentUser.username as string,
+                OR: [{ creatorId: currentUser.username as string }, { assignId: currentUser.username as string }]
             },
             orderBy: {
                 id: 'desc'

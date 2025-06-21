@@ -39,15 +39,14 @@ export default async function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ClientOnly>
-          <ToasterProvider />
-          <NoteModal userList={userList || []} />
-          <LoginModal />
-          <RegisterModal />
-          <Navbar currentUser={currentUser} />
 
-        </ClientOnly>
-        {children}
+        <ToasterProvider />
+        <NoteModal userList={userList || []} />
+        <LoginModal />
+        <RegisterModal />
+        <Navbar currentUser={currentUser} />
+
+        <div>{children}</div>
       </body>
     </html>
   );

@@ -2,6 +2,18 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 
 import prisma from '@/app/libs/prismadb';
+import getAuthorTODO from "@/app/actions/getAuthorTODO";
+
+export async function GET(
+    request: Request
+) {
+    const currentUser = await getCurrentUser();
+
+    if (currentUser) {
+        const listTODO = await getAuthorTODO(currentUser);
+        return NextResponse.json(listTODO);
+    }
+}
 
 export async function POST(
     request: Request
