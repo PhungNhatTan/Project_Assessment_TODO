@@ -1,8 +1,7 @@
-import getAuthorTODO from "./actions/getAuthorTODO";
-import getCurrentUser from "./actions/getCurrentUser";
+// import getCurrentUser from "./actions/getCurrentUser";
 
 export default async function Home() {
-    const currentUser = await getCurrentUser();
+    // const currentUser = await getCurrentUser();
     // let authorTODOs = null;
 
     // if (currentUser) {
