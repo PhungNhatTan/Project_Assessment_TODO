@@ -15,7 +15,6 @@ const NoteList: React.FC<NoteListProps> = ({
     currentUser
 }) => {
     const [data, setData] = useState<Note[]>([]);
-    const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {

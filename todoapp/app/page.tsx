@@ -1,9 +1,5 @@
-import Image from "next/image";
 import getAuthorTODO from "./actions/getAuthorTODO";
 import getCurrentUser from "./actions/getCurrentUser";
-import TemplateBox from "./clientcomponent/TemplatBox";
-import TodoRow from "./clientcomponent/TodoRow";
-import { Note } from "./generated/prisma";
 
 export default async function Home() {
     const currentUser = await getCurrentUser();

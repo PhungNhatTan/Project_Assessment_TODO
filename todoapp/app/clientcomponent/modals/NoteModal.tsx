@@ -6,7 +6,6 @@ import useNoteModal from "@/app/hooks/useNoteModal";
 import Input from "../inputs/Input";
 import { useState } from "react";
 import Select from "react-select";
-import getUsers from "@/app/actions/getUsers";
 import { User } from "@/app/generated/prisma";
 import DatePicker from "react-datepicker";
 
@@ -26,7 +25,6 @@ const NoteModal: React.FC<NoteModalProps> = ({
 }) => {
     const noteModal = useNoteModal();
     const [isLoading, setIsLoading] = useState(false);
-    const [dueDate, setDueDate] = useState<Date | null>(new Date());
 
     const router = useRouter();
 
