@@ -5,7 +5,7 @@ export default async function Todo() {
     const baseUrl = process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
         : 'http://localhost:3000';
-    const fetchData = await (await fetch(`${baseUrl}/api/todo`)).json();
+    const fetchData = await fetch(`${baseUrl}/api/todo`);
     console.log(fetchData);
     const currentUser = await getCurrentUser();
     return (
